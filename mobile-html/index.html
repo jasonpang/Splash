@@ -20,8 +20,8 @@
               </a>
             </div>
             <div id="container-logo">
-              <a class="brand" id="logo" href="#">Splash</a>
-            </div>
+              <a href="#connect" class="brand" id="logo" data-toggle="modal">Splash</a>
+            </div> 
             <div id="container-edit">
               <a href="#">
 		<button class="btn btn-mini" type="button">Edit</button>
@@ -81,6 +81,25 @@
     <div id="contacts">
     </div>
     <div id="add-contacts">
+      <div class="modal hide fade" id="connect" aria-hidden="true">
+        <div class="modal-header">
+          <h3>Connect</h3>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label>Name</label>
+            <input type="text" class="span4"><br>
+            <label>Phone</label>
+            <input type="tel" class="span4"><br>
+            <label>Email</label>
+            <input type="email" class="span4"><br>
+          </form>
+        </div> 
+        <div class="modal-footer">
+	  <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Connect</buton>
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+        </div>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script src="js/bootstrap.js"></script>

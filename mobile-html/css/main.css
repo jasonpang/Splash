@@ -37,3 +37,9 @@ textarea {
 blockquote {
     padding: 3%; 
 }
+.navbar-inner {
+    border-radius: 0px; 
+}
+.modal {
+    max-height: 800px;
+}

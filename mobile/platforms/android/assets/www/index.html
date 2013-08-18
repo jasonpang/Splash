@@ -1,133 +1,123 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-    
-    http://www.apache.org/licenses/LICENSE-2.0
-    
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
-    -->
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=2" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <link rel="stylesheet" href="css/bootstrap.css">
-        <link rel="stylesheet" href="css/icons.css">
-        <title>Splash</title>
-    </head>
-    <body>
-        <div id="main">
-            <div class="container">
-	            <div class="navbar navbar-inverse">
-	                <div class="navbar-inner">
-	                    <div class="container">
-	                        <div id="container-contacts">
-	                            <a href="#">
-	                            <button class="btn btn-mini" type="button">Contacts</button>
-	                            </a>
-	                        </div>
-	                        <div id="container-logo">
-	                            <a href="#connect" class="brand" id="logo" data-toggle="modal">Splash</a>
-	                        </div>
-	                        <div id="container-edit">
-	                            <a href="#">
-	                            <button class="btn btn-mini" type="button">Edit</button>
-	                            </a>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-	            <div id="front-side">
-	                <div id="base-profile">
-	                    <div class="container">
-	                        <div class="row-fluid">
-	                            <div class="span12">
-	                                <div class="row-fluid">
-	                                    <div class="span6">
-	                                        <div class="thumbnails">
-	                                            <a href="#" class="thumbnail">
-	                                            <img src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/254051_135550503188178_4455873_n.jpg">
-	                                            </a>
-	                                        </div>
-	                                    </div>
-	                                    <div class="span6">
-	                                        <form>
-	                                            <input type="text" class="span12" placeholder="Name" id="name-input"><br>
-	                                            <input type="text" class="span12" placeholder="Phone" id="phone-input"><br>
-	                                            <input type="text" class="span12" placeholder="Email" id="email-input"><br>
-	                                        </form>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                            <div class="span11">
-	                                <blockquote>
-	                                    <textarea rows="3" placeholder="Write a short description about yourself (ex. Lead Software Engineer at Splash)"></textarea>
-	                                </blockquote>
-	                            </div>
-	                            <div class="span12 accordion" id="more-info">
-	                                <div class="accordion-group">
-	                                    <div class="accordion-heading">
-	                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#more-info" href="#info">More Information</a>
-	                                    </div>
-	                                    <div id="info" class="accordion-body collapse in">
-	                                        <div class="accordion-inner">
-	                                            <form>
-	                                                <input type="text" class="span12" placeholder="Education" id="education-input"><br>
-	                                                <input type="text" class="span12" placeholder="Current Employer" id="employer-input"><br>
-	                                                <textarea rows="3" class="span12" placeholder="Skills (ex. Skills include front-end developement, AI, mathematical modeling, photoshop.)" id="skills-input"></textarea>
-	                                            </form>
-	                                        </div>
-	                                    </div>
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-	                </div>
-	            </div>
-        	</div>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Splash</title>
+  <meta name="viewport" content="width=400, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+<div id="main" ng-app="splash-app" ng-controller="MainCtrl">
+
+  {{variable}}
+  <div class="container">
+    <div class="navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <div id="container-contacts">
+            <a href="#">
+              <button class="btn btn-mini" type="button">Contacts</button>
+            </a>
+          </div>
+          <div id="container-logo">
+            <a href="#connect" class="brand" id="logo" data-toggle="modal">Splash</a>
+          </div>
+          <div id="container-edit">
+            <a href="#">
+              <button class="btn btn-mini btn-info" type="button" ng-click="save()">Save</button>
+            </a>
+          </div>
         </div>
-        <div id="contacts">
-        </div>
-        <div id="add-contacts">
-            <div class="modal hide fade" id="connect" aria-hidden="true">
-                <div class="modal-header">
-                    <h3>Connect</h3>
+      </div>
+    </div>
+    <div id="front-side">
+      <div id="base-profile">
+        <div class="container">
+          <div class="row-fluid">
+            <div class="span12">
+              <div class="row-fluid">
+                <div class="span3">
+                  <div class="thumbnails">
+                    <a href="#" class="thumbnail">
+                      <img
+                          src="https://fbcdn-sphotos-a-a.akamaihd.net/hphotos-ak-ash2/254051_135550503188178_4455873_n.jpg">
+                    </a>
+                  </div>
                 </div>
-                <div class="modal-body">
-                    <form>
-                        <label>Name</label>
-                        <input type="text" class="span4"><br>
-                        <label>Phone</label>
-                        <input type="tel" class="span4"><br>
-                        <label>Email</label>
-                        <input type="email" class="span4"><br>
-                    </form>
+                <div class="span9">
+                  <form>
+                    <input type="text" class="span12" placeholder="Name" id="name-input" ng-model="name"><br>
+                    <input type="text" class="span12" placeholder="Phone" id="phone-input" ng-model="phone"><br>
+                    <input type="text" class="span12" placeholder="Email" id="email-input" ng-model="email"><br>
+                  </form>
                 </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Connect</buton>
-                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                </div>
+              </div>
             </div>
+            <div class="span11">
+              <blockquote>
+                <textarea rows="3"
+                          placeholder="Write a short description about yourself (ex. Lead Software Engineer at Splash)"></textarea>
+              </blockquote>
+            </div>
+            <div class="span12 accordion" id="more-info">
+              <div class="accordion-group">
+                <div class="accordion-heading">
+                  <a class="accordion-toggle" data-toggle="collapse" data-parent="#more-info"
+                     href="#info">More Information</a>
+                </div>
+                <div id="info" class="accordion-body collapse">
+                  <div class="accordion-inner">
+                    <form>
+                      <input type="text" class="span12" placeholder="Education"
+                             id="education-input"><br>
+                      <input type="text" class="span12" placeholder="Current Employer"
+                             id="employer-input"><br>
+                      <textarea rows="2" class="span12"
+                                placeholder="Interests (ex. Computer vision, graphics, human-computer interaction, classic literature, extreme sports."></textarea>
+                      <textarea rows="2" class="span12"
+                                placeholder="Skills (ex. Skills include front-end developement, AI, mathematical modeling, photoshop.)"
+                                id="skills-input"></textarea>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/main.js"></script>
-    </body>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="contacts">
+</div>
+<div id="add-contacts">
+  <div class="modal hide fade" id="connect" aria-hidden="true">
+    <div class="modal-header">
+      <h3>Connect</h3>
+    </div>
+    <div class="modal-body">
+      <form>
+        <label>Name</label>
+        <input type="text" class="span4"><br>
+        <label>Phone</label>
+        <input type="tel" class="span4"><br>
+        <label>Email</label>
+        <input type="email" class="span4"><br>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-success" data-dismiss="modal" aria-hidden="true">Connect</button>
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+  </div>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/main.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.js"></script>
+<script src="js/ui-bootstrap-tpls-0.5.0.min.js"></script>
+<script src="js/app.js"></script>
+</body>
 </html>

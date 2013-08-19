@@ -1,0 +1,109 @@
+[Sunday, August11 2013 12:14:33 PM] [INFO] (users.py:update_user:109):  [37mUpdated 'Jason Pang'.[0m
+[Sunday, August11 2013 12:14:57 PM] [INFO] (users.py:update_user:109):  [37mUpdated 'Jason Pang'.[0m
+[Sunday, August11 2013 12:16:11 PM] [ERROR] (app.py:log_exception:1423):  [37mException on /user/5207debabdda200d80de6274 [PUT][0m
+Traceback (most recent call last):
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jpang/white/api/views/users.py", line 76, in update_user
+    if 'name' in request.json:
+TypeError: argument of type 'NoneType' is not iterable
+[Sunday, August11 2013 12:16:36 PM] [INFO] (users.py:update_user:110):  [37mUpdated 'Jason Pang'.[0m
+[Sunday, August11 2013 12:23:07 PM] [ERROR] (app.py:log_exception:1423):  [37mException on /user/52071bcabdda2037ce7993e1 [GET][0m
+Traceback (most recent call last):
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jpang/white/api/views/users.py", line 21, in get_user
+    user_json = User.objects(id=userid).first().to_json()
+AttributeError: 'NoneType' object has no attribute 'to_json'
+[Sunday, August11 2013 12:26:10 PM] [ERROR] (app.py:log_exception:1423):  [37mException on /user/5207debabdda200d80dde6274 [GET][0m
+Traceback (most recent call last):
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jpang/white/api/views/users.py", line 21, in get_user
+    user = User.objects(id=userid).first()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/base.py", line 256, in first
+    result = queryset[0]
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/base.py", line 150, in __getitem__
+    return queryset._document._from_son(queryset._cursor[key],
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/base.py", line 1177, in _cursor
+    self._cursor_obj = self._collection.find(self._query,
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/base.py", line 1210, in _query
+    self._mongo_query = self._query_obj.to_query(self._document)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/visitor.py", line 92, in to_query
+    query = query.accept(QueryCompilerVisitor(document))
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/visitor.py", line 157, in accept
+    return visitor.visit_query(self)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/visitor.py", line 80, in visit_query
+    return transform.query(self.document, **query.query)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/queryset/transform.py", line 87, in query
+    value = field.prepare_query_value(op, value)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/base/fields.py", line 412, in prepare_query_value
+    return self.to_mongo(value)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/base/fields.py", line 408, in to_mongo
+    self.error(unicode(e))
+  File "/home/jpang/env/local/lib/python2.7/site-packages/mongoengine/base/fields.py", line 125, in error
+    raise ValidationError(message, errors=errors, field_name=field_name)
+ValidationError: 5207debabdda200d80dde6274 is not a valid ObjectId
+[Sunday, August11 2013  1:11:20 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Sebastian Liu'.[0m
+[Saturday, August17 2013 10:24:59 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Jason Pang'.[0m
+[Saturday, August17 2013 10:38:07 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Jason Pang'.[0m
+[Saturday, August17 2013 10:38:10 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Sebastian Liu'.[0m
+[Saturday, August17 2013 10:42:12 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Jason Pang'.[0m
+[Saturday, August17 2013 10:42:13 PM] [INFO] (users.py:create_user:76):  [37mCreated 'Sebastian Liu'.[0m
+[Saturday, August17 2013 10:58:57 PM] [INFO] (users.py:get_users:47):  [37m[<User: User object>, <User: User object>][0m
+[Saturday, August17 2013 11:02:13 PM] [INFO] (users.py:get_users:47):  [37m[<User: User object>, <User: User object>][0m
+[Sunday, August18 2013  5:41:07 PM] [ERROR] (app.py:log_exception:1423):  [37mException on /users [GET][0m
+Traceback (most recent call last):
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/jpang/splash/api/views/users.py", line 50, in get_users
+    js = json.dumps(data)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/json.py", line 126, in dumps
+    rv = _json.dumps(obj, **kwargs)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/__init__.py", line 369, in dumps
+    **kw).encode(obj)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/encoder.py", line 264, in encode
+    chunks = list(chunks)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/encoder.py", line 612, in _iterencode
+    for chunk in _iterencode_dict(o, _current_indent_level):
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/encoder.py", line 568, in _iterencode_dict
+    for chunk in chunks:
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/encoder.py", line 622, in _iterencode
+    o = _default(o)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/flask/json.py", line 83, in default
+    return _json.JSONEncoder.default(self, o)
+  File "/home/jpang/env/local/lib/python2.7/site-packages/simplejson/encoder.py", line 239, in default
+    raise TypeError(repr(o) + " is not JSON serializable")
+TypeError: [<User: User object>, <User: User object>] is not JSON serializable

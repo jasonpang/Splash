@@ -6,6 +6,6 @@
 *.ear
 
 # Cordova/Phonegap stuff
-.cordova
+/.cordova
 /plugins
 /platforms

@@ -1,4 +1,4 @@
 splash
 ======
 
-Jason and Sebastian's hackathon repository.
+A virtual business card mobile app.

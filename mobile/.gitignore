@@ -1,0 +1,11 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Cordova/Phonegap stuff
+.cordova
+/plugins
+/platforms

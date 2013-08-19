@@ -8,17 +8,12 @@ splashapp.config(['$httpProvider', function ($httpProvider) {
 
 splashapp.controller('MainCtrl', function ($rootScope, $scope, $http) {
     $rootScope.serverUrl = 'http://white.jasonpang.org:5000';
+    //$rootScope.serverUrl = 'http://127.0.0.1:5000';
 
     $scope.save = function () {
-        $http.get($rootScope.serverUrl + '/users').
+        $http.get($rootScope.serverUrl + '/user?id="er9t78vh6w4e789t6hw354786ty354').
             success(function (data, status, headers, config) {
-                alert(data);
                 $scope.json = data;
-                //$scope.json =  JSON.parse(data);
-                alert($scope.json);
-                alert($scope.json.users);
-                alert($scope.json.users[0]);
-                alert($scope.json.users[0].name);
                 $scope.name = $scope.json.users[1].name;
                 $scope.phone = $scope.json.users[1].phone;
                 $scope.email = $scope.json.users[1].email;

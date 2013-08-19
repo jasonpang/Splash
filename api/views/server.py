@@ -1,14 +1,9 @@
-from flask import Flask, url_for
 from flask import request
 from flask import Response
-from flask import json
 from flask import jsonify
-from decorators.basic_auth import check_auth, authenticate, requires_auth
-import logging
 import flask
-from flask import Blueprint, render_template, abort
+from flask import Blueprint
 import os
-import os.path
 
 app = flask.current_app
 server = Blueprint('server', __name__)

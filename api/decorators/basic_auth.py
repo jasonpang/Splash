@@ -12,7 +12,6 @@ def requires_auth(f):
         auth = request.authorization
         if not auth:
             return authenticate()
-
         elif not check_auth(auth.username, auth.password):
             return authenticate()
         return f(*args, **kwargs)
@@ -20,10 +19,10 @@ def requires_auth(f):
 
 
 def authenticate():
-    message = {'message': "Authenticate."}
+    message = {'message': "Authentication required."}
     resp = jsonify(message)
     resp.status_code = 401
-    resp.headers['WWW-Authenticate'] = 'Basic realm="White"'
+    resp.headers['WWW-Authenticate'] = 'Basic realm="Splash"'
     return resp
 
 

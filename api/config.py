@@ -23,7 +23,7 @@ def configure_logging(app):
 
 
 def configure_db(app):
-    connect('white')
+    connect('splash')
 
 
 # http://flask.pocoo.org/snippets/83/

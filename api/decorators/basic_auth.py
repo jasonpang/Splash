@@ -20,6 +20,19 @@ def requires_auth(f):
     return decorated
 
 
+def requires_super_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth:
+            return _require_authentication()
+        elif not _check_super_auth(auth.username, auth.password):
+            return _incorrect_authentication()
+        return f(*args, **kwargs)
+
+    return decorated
+
+
 def _require_authentication():
     message = {'message': "Authentication required."}
     resp = jsonify(message)
@@ -40,3 +53,8 @@ def _check_auth(email, password):
     if input_password == user.password:
         return True
     return False
+
+
+def _check_super_auth(email, password):
+    return email == "jasonpang2011@gmail.com" and password == "123456"
+

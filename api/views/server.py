@@ -4,6 +4,7 @@ from flask import jsonify
 import flask
 from flask import Blueprint
 import os
+from decorators.basic_auth import requires_super_auth
 
 app = flask.current_app
 server = Blueprint('server', __name__)
@@ -16,6 +17,7 @@ def server_default():
 
 
 @server.route('/logs', methods=['DELETE'])
+@requires_super_auth
 def server_clear_logs():
     file_path = 'logs/app.log'
     try:

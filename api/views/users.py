@@ -51,26 +51,18 @@ def update_user():
         user.picture_profile = request.json['picture_profile']
     if 'picture_thumbnail' in request.json:
         user.picture_thumbnail = request.json['picture_thumbnail']
-    if 'quote' in request.json:
-        user.quote = request.json['quote']
-    if 'school' in request.json:
-        user.school = request.json['school']
-    if 'year' in request.json:
-        user.year = request.json['year']
-    if 'major' in request.json:
-        user.major = request.json['major']
-    if 'company' in request.json:
-        user.company = request.json['company']
-    if 'title' in request.json:
-        user.title = request.json['title']
-    if 'location' in request.json:
-        user.location = request.json['location']
-    if 'interests' in request.json:
-        user.interests = request.json['interests']
+    if 'password' in request.json:
+        user.password = request.json['password']
+    if 'description' in request.json:
+        user.description = request.json['description']
+    if 'education' in request.json:
+        user.education = request.json['education']
+    if 'employer' in request.json:
+        user.employer = request.json['employer']
     if 'skills' in request.json:
         user.skills = request.json['skills']
-    if 'profile' in request.json:
-        user.profile = request.json['profile']
+    if 'interests' in request.json:
+        user.interests = request.json['interests']
     if 'contacts' in request.json:
         user.contacts = request.json['contacts']
     user.save()

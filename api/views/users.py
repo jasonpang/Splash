@@ -19,7 +19,7 @@ users = Blueprint('users', __name__)
 @users.route('/user', methods = ['GET'])
 @requires_auth
 def get_user():
-    user = User.objects(email = request.authorization.username).first()
+    user = User.objects(email = request.authorization.username).exclude('password').exclude('salt').exclude('id').exclude('contacts').first()
     user_json = json.loads(user.to_json())
     data = {
         'user': user_json,
@@ -27,13 +27,37 @@ def get_user():
     return Response(json.dumps(data), status = 200, mimetype = 'application/json')
 
 
+@users.route('/user/<userid>', methods = ['GET'])
+@requires_auth
+def get_user_by_id(userid):
+    users = User.objects(id = userid).exclude('password').exclude('salt').exclude(
+        'id').exclude('contacts')
+    if len(users) > 0:
+        user = users.first()
+        user_json = json.loads(user.to_json())
+        data = {
+            'user': user_json,
+        }
+        return Response(json.dumps(data), status = 200, mimetype = 'application/json')
+    else:
+        data = {
+            'user': 'No user with that id exists.',
+        }
+        return Response(json.dumps(data), status = 404, mimetype = 'application/json')
+
+
 @users.route('/user/contacts', methods = ['GET'])
 @requires_auth
 def get_user_contacts():
     user = User.objects(email = request.authorization.username).first()
     user_json = json.loads(user.to_json())
+    user_contacts = user_json['contacts'] # Is a list of dictionaries, each entry is a contact
+    contacts = []
+    for contact in user_contacts:
+        contacts.append(contact.values()[0]) # Get the value id only
+
     data = {
-        'user': user_json['contacts'],
+        'contacts': contacts,
     }
     return Response(json.dumps(data), status = 200, mimetype = 'application/json')
 

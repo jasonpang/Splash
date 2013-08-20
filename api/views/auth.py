@@ -3,7 +3,7 @@ from flask import request
 from flask import Response
 from flask import json
 from flask import jsonify
-from decorators.basic_auth import check_auth, authenticate, requires_auth
+from decorators.basic_auth import requires_auth
 import logging
 import flask
 from flask import Blueprint, render_template, abort
@@ -31,9 +31,12 @@ def auth_signup():
         response.status = 400
         return response
     else:
+        salt = bcrypt.gensalt()
+        password = bcrypt.hashpw(password, salt)
         user = User(
             email = email,
-            password = password
+            password = password,
+            salt = salt
         )
         user.save()
         app.logger.info('Created \'' + str(user.name) + '\'.')
@@ -41,17 +44,6 @@ def auth_signup():
 
 
 @auth.route('/login', methods = ['POST'])
-@requires_params(['email', 'password'])
+@requires_auth
 def auth_login():
-    email = request.json['email']
-    password = request.json['password']
-
-    user = User.objects(email=email).first()
-
-        user = User(
-            email = email,
-            password = password
-        )
-        user.save()
-        app.logger.info('Created \'' + str(user.name) + '\'.')
-        return Response(status = 200, mimetype = 'application/json')
+    return Response(status = 200, mimetype = 'application/json')

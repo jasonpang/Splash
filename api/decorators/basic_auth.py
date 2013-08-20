@@ -1,9 +1,11 @@
 from functools import wraps
+import bcrypt
 from flask import Flask, url_for
 from flask import request
 from flask import Response
 from flask import json
 from flask import jsonify
+from models.user import User
 
 
 def requires_auth(f):
@@ -11,20 +13,30 @@ def requires_auth(f):
     def decorated(*args, **kwargs):
         auth = request.authorization
         if not auth:
-            return authenticate()
-        elif not check_auth(auth.username, auth.password):
-            return authenticate()
+            return _require_authentication()
+        elif not _check_auth(auth.username, auth.password):
+            return _incorrect_authentication()
         return f(*args, **kwargs)
     return decorated
 
 
-def authenticate():
+def _require_authentication():
     message = {'message': "Authentication required."}
     resp = jsonify(message)
     resp.status_code = 401
-    resp.headers['WWW-Authenticate'] = 'Basic realm="Splash"'
     return resp
 
 
-def check_auth(username, password):
-    return username == 'white' and password == 'splash'
+def _incorrect_authentication():
+    message = {'message': "Authentication failed."}
+    resp = jsonify(message)
+    resp.status_code = 401
+    return resp
+
+
+def _check_auth(email, password):
+    user = User.objects(email=email).first()
+    input_password = bcrypt.hashpw(password, user.salt)
+    if input_password == user.password:
+        return True
+    return False

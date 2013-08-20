@@ -1,4 +1,4 @@
-from mongoengine import Document, StringField, ListField
+from mongoengine import Document, StringField, ListField, ReferenceField
 
 
 class User(Document):
@@ -14,4 +14,6 @@ class User(Document):
     employer = StringField()
     interests = StringField()
     skills = StringField()
-    contacts = ListField()
+    contacts = ListField(ReferenceField('User'))
+
+    #	"profile": "www.linkedin.com/pub/jason-pang/4a/93a/34",

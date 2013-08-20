@@ -56,5 +56,5 @@ def _check_auth(email, password):
 
 
 def _check_super_auth(email, password):
-    return email == "jasonpang2011@gmail.com" and password == "123456"
+    return email == "jasonpang2011@gmail.com" and password == "FV2Ogh4ZHP6rgrBEgHmyJMSJBoj9vvD5PX8Qs4xwoCO6es5R40z06cn3CHjF3Xz"
 

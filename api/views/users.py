@@ -20,20 +20,22 @@ users = Blueprint('users', __name__)
 @requires_auth
 def get_user():
     user = User.objects(email = request.authorization.username).first()
-    if not user is None:
-        user_json = user.to_json()
-        data = {
-            'user': user_json,
-        }
-        resp = jsonify(data)
-        return resp
-    else:
-        data = {
-            'error': 'No user found with email \'' + request.authorization.username + '\'.',
-        }
-        resp = jsonify(data)
-        resp.status_code = 404
-        return resp
+    user_json = json.loads(user.to_json())
+    data = {
+        'user': user_json,
+    }
+    return Response(json.dumps(data), status = 200, mimetype = 'application/json')
+
+
+@users.route('/user/contacts', methods = ['GET'])
+@requires_auth
+def get_user_contacts():
+    user = User.objects(email = request.authorization.username).first()
+    user_json = json.loads(user.to_json())
+    data = {
+        'user': user_json['contacts'],
+    }
+    return Response(json.dumps(data), status = 200, mimetype = 'application/json')
 
 
 @users.route('/user', methods = ['PUT'])
@@ -64,7 +66,6 @@ def update_user():
     if 'interests' in request.json:
         user.interests = request.json['interests']
     user.save()
-    app.logger.info('Updated \'' + str(user.name) + '\'.')
     return Response(status = 200, mimetype = 'application/json')
 
 
@@ -84,15 +85,12 @@ def add_user_contact():
             data = {
                 'message': 'This user already has that contact added.'
             }
-            resp = jsonify(data)
-            resp.status_code = 400
+            return Response(json.dumps(data), status = 400, mimetype = 'application/json')
     else:
         data = {
             'message': 'The contact does not exist.'
         }
-        resp = jsonify(data)
-        resp.status_code = 404
-    return resp
+        return Response(json.dumps(data), status = 404, mimetype = 'application/json')
 
 
 @users.route('/user/contact', methods = ['DELETE'])
@@ -111,15 +109,12 @@ def remove_user_contact():
             data = {
                 'message': 'This user does not have that contact added.'
             }
-            resp = jsonify(data)
-            resp.status_code = 400
+            return Response(json.dumps(data), status = 400, mimetype = 'application/json')
     else:
         data = {
             'message': 'The contact does not exist.'
         }
-        resp = jsonify(data)
-        resp.status_code = 400
-    return resp
+        return Response(json.dumps(data), status = 400, mimetype = 'application/json')
 
 
 @users.route('/user', methods=['DELETE'])
@@ -133,9 +128,7 @@ def delete_user():
         data = {
             'error': 'No user found with email \'' + request.authorization.username + '\'.',
         }
-        resp = jsonify(data)
-        resp.status_code = 404
-        return resp
+        return Response(json.dumps(data), status = 404, mimetype = 'application/json')
 
 
 @users.route('/users', methods = ['DELETE'])

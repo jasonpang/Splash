@@ -1,3 +1,4 @@
+import json
 from flask import request
 from flask import Response
 from flask import jsonify
@@ -28,17 +29,15 @@ def server_clear_logs():
             data = {
                 'message': 'Server logs have been deleted.',
             }
-            response = jsonify(data)
+            return Response(json.dumps(data), status = 200, mimetype = 'application/json')
         else:
             data = {
                 'message': 'There are no server logs.',
             }
-            response = jsonify(data)
+            return Response(json.dumps(data), status = 500, mimetype = 'application/json')
     except Exception:
         app.logger.error("Could not delete server logs." + str(Exception))
         data = {
             'message': 'Could not delete server logs.',
         }
-        response = jsonify(data)
-        response.status = 500
-    return response
+        return Response(json.dumps(data), status = 500, mimetype = 'application/json')

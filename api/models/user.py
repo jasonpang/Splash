@@ -15,5 +15,3 @@ class User(Document):
     interests = StringField()
     skills = StringField()
     contacts = ListField(ReferenceField('User'))
-
-    #	"profile": "www.linkedin.com/pub/jason-pang/4a/93a/34",

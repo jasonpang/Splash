@@ -27,9 +27,7 @@ def auth_signup():
         data = {
             'message': 'An account with that email already exists.',
         }
-        response = jsonify(data)
-        response.status = 400
-        return response
+        return Response(json.dumps(data), status = 400, mimetype = 'application/json')
     else:
         salt = bcrypt.gensalt()
         password = bcrypt.hashpw(password, salt)
@@ -39,7 +37,6 @@ def auth_signup():
             salt = salt
         )
         user.save()
-        app.logger.info('Created \'' + str(user.name) + '\'.')
         return Response(status = 200, mimetype = 'application/json')
 
 

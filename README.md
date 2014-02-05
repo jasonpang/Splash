@@ -12,7 +12,7 @@ A virtual business card mobile app for the Samsung Developers hackathon.
 Tech Stack
 ----------
 
-* [Web Service](https://github.com/jasonpang/splash/tree/api)
+* [API Web Service](https://github.com/jasonpang/splash/tree/api)
   * Python
         * [Flask web framework](http://flask.pocoo.org/) for easy RESTful services
   * [MongoDB](http://www.mongodb.org/) for the database

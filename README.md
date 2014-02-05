@@ -1,7 +1,7 @@
 Splash
 =================
 
-See branch '[api](https://github.com/jasonpang/splash/tree/api)' for the web service, and '[mobile](https://github.com/jasonpang/splash/tree/mobile)' for the mobile code.
+See branch [api](https://github.com/jasonpang/splash/tree/api) for the web service, and [mobile](https://github.com/jasonpang/splash/tree/mobile) for the mobile code.
 
 Purpose
 -------
